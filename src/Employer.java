@@ -65,7 +65,17 @@ public class Employer extends Person{
         Employer other = (Employer) o1;
         return Objects.equals(this.BUISNES, other.BUISNES) && (this.sizeOfCompany == other.sizeOfCompany)
                 && Objects.equals(this.mood, other.mood) && Objects.equals(this.workers, other.workers)
-                && Objects.equals(this.name, other.name) && this.money == other.money;
+                && Objects.equals(this.name, other.name) && this.money == other.money && this.store == other.store;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, workers, money, mood, store, sizeOfCompany, BUISNES);
+    }
+
+    @Override
+    public String toString() {
+        return "Employer{name=" + name + ", BUISNES=" + BUISNES + ", money=" + money + ", workers=" + workers + ", store=" + store + ", sizeOfCompany=" + sizeOfCompany + ", mood=" + mood + "}";
     }
 
     public void chanceOfEmploy(Employee... employees) throws AlreadyRented {
