@@ -6,7 +6,7 @@ import static java.lang.Math.random;
 public class Employer extends Person {
     private Business BUSINESS;
     private final ArrayList<Employee> workers = new ArrayList<Employee>();
-    private Store store;
+    private ArrayList<Store> stores = new ArrayList<Store>();
 
     public Employer(String name, Moods mood, int money) {
         super(name, mood, money);
@@ -23,16 +23,7 @@ public class Employer extends Person {
     }
 
     protected void startToRent(Store store) {
-        if (this.store != null) {
-            this.store.setNullRenter();
-            this.store = store;
-        } else {
-            this.store = store;
-        }
-    }
-
-    protected void setStore(Store store) {
-        this.store = store;
+        this.stores.add(store);
     }
 
     public ArrayList<Employee> getWorkers() {
@@ -43,8 +34,8 @@ public class Employer extends Person {
         return this.BUSINESS;
     }
 
-    public Store getStore() {
-        return this.store;
+    public ArrayList<Store> getStores() {
+        return this.stores;
     }
 
     @Override
@@ -75,17 +66,17 @@ public class Employer extends Person {
         Employer other = (Employer) o1;
         return Objects.equals(this.BUSINESS, other.BUSINESS)
                 && Objects.equals(this.mood, other.mood) && Objects.equals(this.workers, other.workers)
-                && Objects.equals(this.name, other.name) && this.money == other.money && this.store == other.store;
+                && Objects.equals(this.name, other.name) && this.money == other.money && this.stores == other.stores;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, workers, money, mood, store, BUSINESS);
+        return Objects.hash(name, workers, money, mood, stores, BUSINESS);
     }
 
     @Override
     public String toString() {
-        return "Employer{name=" + name + ", BUISNES=" + BUSINESS + ", money=" + money + ", workers=" + workers + ", store=" + store + ", mood=" + mood + "}";
+        return "Employer{name=" + name + ", BUISNES=" + BUSINESS + ", money=" + money + ", workers=" + workers + ", store=" + stores + ", mood=" + mood + "}";
     }
 
     public void chanceOfEmploy(Employee... employees) throws AlreadyRented {

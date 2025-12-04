@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class Person {
+public abstract class Person implements Inhabitable {
 
     protected String name;
     protected Moods mood;
@@ -38,10 +38,12 @@ public abstract class Person {
 
     abstract void earnMoney();
 
+    @Override
     public void setHouse(House house) {
         this.house = house;
     }
 
+    @Override
     public void setStreet(Street street) {
         this.street = street;
     }

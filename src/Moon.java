@@ -25,6 +25,7 @@ public class Moon {
         store2.setRenter(employer1);
         store2.changeRenter(employer2);
 
+
         //проверка работы исключения
         leaveHouse(house1, employee6);
 
@@ -46,7 +47,6 @@ public class Moon {
         Person.payments(house1);
         Employer.benefits(employer1, employer2);
         Person.happening(street1.people);
-        System.out.println(street1.people);
 
         //Retep продает бизнесс e3
         employer2.sellBusiness(employer3, 800);

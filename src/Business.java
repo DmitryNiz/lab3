@@ -17,14 +17,13 @@ public class Business {
             res -= employee.getWork().salary;
             employee.earnMoney();
         }
-        if (this.owner.getStore() != null) {
-            res -= this.owner.getStore().getCostOfRent();
-            System.out.println("В этот день бизнес " + this.name + " заработал " + res + " DB");
-            return res;
-        } else {
-            System.out.println("В этот день бизнес " + this.name + " заработал " + res + " DB");
-            return res;
+
+        for (Store store : this.owner.getStores()) {
+            res -= store.getCostOfRent();
         }
+        System.out.println("В этот день бизнес " + this.name + " заработал " + res + " DB");
+        return res;
+
     }
 
     public String getName() {
