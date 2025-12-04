@@ -15,6 +15,6 @@ public class Building extends CityObject {
 
     @Override
     public void renovate() {
-        isBeautiful = true;
+        this.isBeautiful = true;
     }
 }
