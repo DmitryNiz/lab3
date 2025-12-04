@@ -1,4 +1,4 @@
 public interface Structure {
 
-    void BuildNewFloor();
+    void BuildNewFloor(int countOfNewFlats);
 }

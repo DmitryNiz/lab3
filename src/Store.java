@@ -1,20 +1,27 @@
-import java.util.ArrayList;
-
-public class Store extends Building{
+public class Store extends Building {
 
     private Employer renter;
 
     public Store(boolean isBeautiful, int costOfRent) {
         super(isBeautiful, costOfRent);
-        this.people = new ArrayList<>();
     }
 
-    public void setRenter(Employer employer) throws AlreadyRented{
-        if (renter != null) throw new AlreadyRented(renter.getBuisnes());
-        this.renter = employer;
-        employer.startToRent(this);
-        this.people.add(employer);
-        this.people.addAll(employer.getWorkers());
+    public void setRenter(Employer employer) throws AlreadyRented {
+        if (renter != null) throw new AlreadyRented(renter.getBuisnes().getName());
+        if (employer != null) {
+            this.renter = employer;
+            employer.startToRent(this);
+        }
+    }
+
+    public void changeRenter(Employer renter) {
+        this.renter.setStore(null);
+        setNullRenter();
+        setRenter(renter);
+    }
+
+    public int getCostOfRent() {
+        return this.costOfRent;
     }
 
     protected void setNullRenter() {

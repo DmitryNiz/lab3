@@ -1,5 +1,5 @@
-public class NotHisHouse extends Exception {
-    public NotHisHouse(String name) {
+public class NotHisHouseException extends Exception {
+    public NotHisHouseException(String name) {
         super(name);
     }
 

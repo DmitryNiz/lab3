@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public abstract class CityObject {
 
-    ArrayList<Person> people = new ArrayList<Person>();
+    protected ArrayList<Person> people = new ArrayList<Person>();
+
+    abstract void renovate();
 
 }

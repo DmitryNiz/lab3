@@ -1,21 +1,19 @@
-import java.util.ArrayList;
-
 public class House extends Building
-implements Structure{
+        implements Structure {
 
     private int countOfFlats;
 
-    public House(int countOfFlats, boolean isBeautiful, int costOfRent){
+    public House(int countOfFlats, boolean isBeautiful, int costOfRent) {
         super(isBeautiful, costOfRent);
         this.countOfFlats = countOfFlats;
     }
 
     @Override
-    public void BuildNewFloor() {
-        this.countOfFlats += 5;
+    public void BuildNewFloor(int countOfNewFlats) {
+        this.countOfFlats += countOfNewFlats;
     }
 
-    public void appendPersons(Person... persons){
+    public void appendPersons(Person... persons) {
         for (Person person : persons) {
             if (this.people.size() < this.countOfFlats) {
                 if (!(this.street.people.contains(person))) {
@@ -32,8 +30,8 @@ implements Structure{
         }
     }
 
-    public void leave(Person person) throws NotHisHouse{
-        if (!(this.people.contains(person))) throw new NotHisHouse(person.name);
+    public void leave(Person person) throws NotHisHouseException {
+        if (!(this.people.contains(person))) throw new NotHisHouseException(person.name);
         this.people.remove(person);
     }
 }

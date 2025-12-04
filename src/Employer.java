@@ -1,20 +1,28 @@
-import java.util.*;
-import static java.lang.Math.*;
+import java.util.ArrayList;
+import java.util.Objects;
 
-public class Employer extends Person{
-    private final String BUISNES;
-    private ArrayList<Employee> workers;
-    private int sizeOfCompany;
+import static java.lang.Math.random;
+
+public class Employer extends Person {
+    private Business BUSINESS;
+    private final ArrayList<Employee> workers = new ArrayList<Employee>();
     private Store store;
 
-    public Employer(String name, Moods mood, int money, String buisnes, int sizeOfCompany){
+    public Employer(String name, Moods mood, int money) {
         super(name, mood, money);
-        this.BUISNES = buisnes;
-        this.sizeOfCompany = sizeOfCompany;
-        this.workers = new ArrayList<Employee>();
     }
 
-    public void startToRent(Store store) {
+    public static void benefits(Employer... employers) {
+        for (Employer employer : employers) {
+            employer.earnMoney();
+        }
+    }
+
+    protected void setBUSINESS(Business BUSINESS) {
+        this.BUSINESS = BUSINESS;
+    }
+
+    protected void startToRent(Store store) {
         if (this.store != null) {
             this.store.setNullRenter();
             this.store = store;
@@ -23,39 +31,41 @@ public class Employer extends Person{
         }
     }
 
+    protected void setStore(Store store) {
+        this.store = store;
+    }
+
     public ArrayList<Employee> getWorkers() {
         return this.workers;
     }
 
-    public String getBuisnes(){
-        return this.BUISNES;
+    public Business getBuisnes() {
+        return this.BUSINESS;
+    }
+
+    public Store getStore() {
+        return this.store;
     }
 
     @Override
-    void spendMoney(int spent) {
+    public void spendMoney(int spent) {
         this.money -= spent;
     }
 
-    public int buisnesProfit() {
-        int res = 0;
-        for (Employee employee : this.getWorkers()) {
-            res += (int) employee.ganerateProfit();
-            res -= employee.getWork().salary;
-            employee.earnMoney();
-        }
-        if (this.store != null) {
-            res -= store.costOfRent;
-            System.out.println("В этот день бизнес " + this.BUISNES + " заработал " + res + " DB");
-            return res;
-        }else {
-            System.out.println("В этот день бизнес " + this.BUISNES + " заработал " + res + " DB");
-            return res;
-        }
+    @Override
+    protected void earnMoney() {
+        this.money += this.getBuisnes().businessProfit();
     }
 
-    @Override
-    void earnMoney() {
-        this.money += buisnesProfit();
+    private void earnMoney(int income) {
+        this.money += income;
+    }
+
+    public void sellBusiness(Employer owner, int value) {
+        this.earnMoney(value);
+        owner.spendMoney(value);
+        owner.setBUSINESS(this.BUSINESS);
+        this.setBUSINESS(null);
     }
 
     @Override
@@ -63,30 +73,30 @@ public class Employer extends Person{
         if (this == o1) return true;
         if (o1 == null || this.getClass() != o1.getClass()) return false;
         Employer other = (Employer) o1;
-        return Objects.equals(this.BUISNES, other.BUISNES) && (this.sizeOfCompany == other.sizeOfCompany)
+        return Objects.equals(this.BUSINESS, other.BUSINESS)
                 && Objects.equals(this.mood, other.mood) && Objects.equals(this.workers, other.workers)
                 && Objects.equals(this.name, other.name) && this.money == other.money && this.store == other.store;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, workers, money, mood, store, sizeOfCompany, BUISNES);
+        return Objects.hash(name, workers, money, mood, store, BUSINESS);
     }
 
     @Override
     public String toString() {
-        return "Employer{name=" + name + ", BUISNES=" + BUISNES + ", money=" + money + ", workers=" + workers + ", store=" + store + ", sizeOfCompany=" + sizeOfCompany + ", mood=" + mood + "}";
+        return "Employer{name=" + name + ", BUISNES=" + BUSINESS + ", money=" + money + ", workers=" + workers + ", store=" + store + ", mood=" + mood + "}";
     }
 
     public void chanceOfEmploy(Employee... employees) throws AlreadyRented {
         for (Employee employee : employees) {
             if ((this.workers.contains(employee))) {
-                System.out.println( employee.name + " уже работает на " + this.name);
+                System.out.println(employee.name + " уже работает на " + this.name);
                 continue;
             }
             int lowerLimit = 0;
             Jobs job = Jobs.randomJob();
-            if (this.workers.size() < this.sizeOfCompany) {
+            if (this.workers.size() < this.BUSINESS.getSizeOfCompany()) {
 
                 if (this.mood.index > 2) {
                     lowerLimit += 15;
@@ -113,20 +123,14 @@ public class Employer extends Person{
         }
     }
 
-    public void fireEmployee(Employee... employees){
+    public void fireEmployee(Employee... employees) {
         for (Employee employee : employees) {
             if (!this.workers.contains(employee)) {
-                System.out.println( employee.name + " уже не работает на " + this.name);
+                System.out.println(employee.name + " уже не работает на " + this.name);
                 continue;
             }
             this.workers.remove(employee);
             employee.setJob(Jobs.UNEMPLOYED);
-        }
-    }
-
-    public static void benefits(Employer... employers) {
-        for(Employer employer : employers) {
-            employer.earnMoney();
         }
     }
 

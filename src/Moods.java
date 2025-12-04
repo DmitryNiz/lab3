@@ -12,7 +12,7 @@ public enum Moods {
     public final String mood;
     public final int index;
 
-    Moods(String mood, int index){
+    Moods(String mood, int index) {
         this.mood = mood;
         this.index = index;
     }

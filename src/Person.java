@@ -2,41 +2,41 @@ import java.util.ArrayList;
 
 public abstract class Person {
 
-    String name;
-    Moods mood;
-    int money;
-    House house;
-    Street street;
+    protected String name;
+    protected Moods mood;
+    protected int money;
+    protected House house;
+    protected Street street;
 
-    public Person(String name, Moods mood, int money){
+    public Person(String name, Moods mood, int money) {
         this.mood = mood;
         this.name = name;
         this.money = money;
     }
 
-    abstract void spendMoney(int spent);
-
-    abstract void earnMoney();
-
-    public static void happening(ArrayList<Person> persons){
-        for(Person person : persons){
+    public static void happening(ArrayList<Person> persons) {
+        for (Person person : persons) {
             Moods previousMood = person.mood;
             person.mood = Moods.randomMood();
             if (previousMood.index < person.mood.index) {
                 System.out.println("у " + person.name + " произошла удача");
-            }else if (previousMood.index > person.mood.index) {
+            } else if (previousMood.index > person.mood.index) {
                 System.out.println("у " + person.name + " произоло несчастье");
             }
         }
     }
 
     public static void payments(House... houses) {
-        for (House house : houses){
+        for (House house : houses) {
             for (Person person : house.people) {
                 person.spendMoney(person.house.costOfRent);
             }
         }
     }
+
+    abstract void spendMoney(int spent);
+
+    abstract void earnMoney();
 
     public void setHouse(House house) {
         this.house = house;

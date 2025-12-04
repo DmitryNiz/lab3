@@ -1,25 +1,24 @@
-public class Employee extends Person{
+public class Employee extends Person {
 
-    private Jobs work;
+    private Jobs work = Jobs.UNEMPLOYED;
     private double skill;
 
-    public Employee(String name, Moods mood, int money, double skill){
+    public Employee(String name, Moods mood, int money, double skill) {
         super(name, mood, money);
-        this.work = Jobs.UNEMPLOYED;
         this.skill = skill;
     }
 
     @Override
-    void spendMoney(int spent) {
+    public void spendMoney(int spent) {
         this.money -= spent;
     }
 
     @Override
-    void earnMoney() {
-        this.money += work.salary;
+    protected void earnMoney() {
+        this.money += this.work.salary;
     }
 
-    protected double ganerateProfit(){
+    protected double generateProfit() {
         this.skill += 0.01;
         try {
             if (this.skill >= this.work.requiredSkill) {
@@ -29,21 +28,21 @@ public class Employee extends Person{
             }
         } catch (ArithmeticException e) {
             System.out.println("Error: " + e.getMessage());
-        }finally {
+        } finally {
             return (this.work.requiredSkill + (this.skill - this.work.requiredSkill) * 0.1 / 2) * 100;
         }
     }
 
-     protected void setJob (Jobs job) {
+    protected void setJob(Jobs job) {
         this.work = job;
-        if(job != Jobs.UNEMPLOYED) {
+        if (job != Jobs.UNEMPLOYED) {
             Moods.up(this);
-        }else {
+        } else {
             Moods.down(this);
         }
     }
 
-    public double getSkill(){
+    public double getSkill() {
         return skill;
     }
 
