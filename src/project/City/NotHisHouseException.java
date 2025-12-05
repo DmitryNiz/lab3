@@ -1,3 +1,5 @@
+package project.City;
+
 public class NotHisHouseException extends Exception {
     public NotHisHouseException(String name) {
         super(name);

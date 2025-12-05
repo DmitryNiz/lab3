@@ -1,3 +1,5 @@
+package project.City;
+
 public class Building extends CityObject {
 
     protected boolean isBeautiful;
@@ -16,5 +18,13 @@ public class Building extends CityObject {
     @Override
     public void renovate() {
         this.isBeautiful = true;
+    }
+
+    public Street getStreet() {
+        return street;
+    }
+
+    public int getCostOfRent() {
+        return costOfRent;
     }
 }

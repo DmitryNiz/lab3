@@ -1,3 +1,8 @@
+package project.Person;
+
+import project.*;
+import project.City.*;
+
 public class Employee extends Person {
 
     private Jobs work = Jobs.UNEMPLOYED;

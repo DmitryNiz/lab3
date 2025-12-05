@@ -1,3 +1,7 @@
+package project;
+
+import project.Person.Person;
+
 import java.util.Random;
 
 public enum Moods {
@@ -22,16 +26,16 @@ public enum Moods {
     }
 
     public static void up(Person person) {
-        if (person.mood.index < 4) {
-            person.mood = VALUES[person.mood.index + 1];
-            System.out.println(person.name + " повеселел");
+        if (person.getMood().index < 4) {
+            person.setMood(VALUES[person.getMood().index + 1]);
+            System.out.println(person.getName() + " повеселел");
         }
     }
 
     public static void down(Person person) {
-        if (person.mood.index > 0) {
-            person.mood = VALUES[person.mood.index - 1];
-            System.out.println(person.name + " погрустнел");
+        if (person.getMood().index > 0) {
+            person.setMood(VALUES[person.getMood().index - 1]);
+            System.out.println(person.getMood() + " погрустнел");
         }
     }
 }

@@ -1,4 +1,9 @@
+package project.Person;
+
 import java.util.ArrayList;
+
+import project.*;
+import project.City.*;
 
 public abstract class Person implements Inhabitable {
 
@@ -28,8 +33,8 @@ public abstract class Person implements Inhabitable {
 
     public static void payments(House... houses) {
         for (House house : houses) {
-            for (Person person : house.people) {
-                person.spendMoney(person.house.costOfRent);
+            for (Person person : house.getPeople()) {
+                person.spendMoney(person.house.getCostOfRent());
             }
         }
     }
@@ -48,7 +53,23 @@ public abstract class Person implements Inhabitable {
         this.street = street;
     }
 
+    public void setMood(Moods mood) {
+        this.mood = mood;
+    }
+
     public Street getOriginStreet() {
-        return this.house.street;
+        return this.house.getStreet();
+    }
+
+    public Moods getMood() {
+        return mood;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Street getStreet() {
+        return street;
     }
 }

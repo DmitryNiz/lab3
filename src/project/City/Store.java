@@ -1,3 +1,7 @@
+package project.City;
+
+import project.Person.Employer;
+
 public class Store extends Building {
 
     private Employer renter;

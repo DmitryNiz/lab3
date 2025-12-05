@@ -1,3 +1,7 @@
+package project.City;
+
+import project.Person.Person;
+
 public class House extends Building
         implements Structure {
 
@@ -19,7 +23,7 @@ public class House extends Building
                 if (!(this.street.people.contains(person))) {
                     this.people.add(person);
                     person.setHouse(this);
-                    if (person.street == null || person.street != this.street) {
+                    if (person.getStreet() == null || person.getStreet() != this.street) {
                         person.setStreet(this.street);
                         this.street.people.add(person);
                     }
@@ -31,7 +35,8 @@ public class House extends Building
     }
 
     public void leave(Person person) throws NotHisHouseException {
-        if (!(this.people.contains(person))) throw new NotHisHouseException(person.name);
+        if (!(this.people.contains(person))) throw new NotHisHouseException(person.getName());
         this.people.remove(person);
     }
+
 }

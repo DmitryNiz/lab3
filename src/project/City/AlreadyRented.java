@@ -1,3 +1,5 @@
+package project.City;
+
 public class AlreadyRented extends RuntimeException {
     public AlreadyRented(String message) {
         super(message);

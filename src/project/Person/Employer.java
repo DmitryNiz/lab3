@@ -1,5 +1,10 @@
+package project.Person;
+
 import java.util.ArrayList;
 import java.util.Objects;
+
+import project.*;
+import project.City.*;
 
 import static java.lang.Math.random;
 
@@ -22,7 +27,7 @@ public class Employer extends Person {
         this.BUSINESS = BUSINESS;
     }
 
-    protected void startToRent(Store store) {
+    public void startToRent(Store store) {
         this.stores.add(store);
     }
 

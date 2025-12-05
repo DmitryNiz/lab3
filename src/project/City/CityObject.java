@@ -1,3 +1,7 @@
+package project.City;
+
+import project.Person.Person;
+
 import java.util.ArrayList;
 
 public abstract class CityObject {
@@ -6,4 +10,7 @@ public abstract class CityObject {
 
     abstract void renovate();
 
+    public ArrayList<Person> getPeople() {
+        return people;
+    }
 }

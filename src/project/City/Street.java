@@ -1,3 +1,8 @@
+package project.City;
+
+import project.Moods;
+import project.Person.Person;
+
 import java.util.ArrayList;
 
 public class Street extends CityObject {

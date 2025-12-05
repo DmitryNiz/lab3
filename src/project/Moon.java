@@ -1,3 +1,12 @@
+package project;
+
+import project.City.House;
+import project.City.NotHisHouseException;
+import project.City.Store;
+import project.City.Street;
+import project.Person.*;
+
+
 public class Moon {
     public static void main(String[] args) {
         Employer employer1 = new Employer("Peter", Moods.NORMAL, 100);
@@ -46,7 +55,7 @@ public class Moon {
         //день закончился, жители платят ренту, бизнес считает прибыль, жители обдумывают события за день
         Person.payments(house1);
         Employer.benefits(employer1, employer2);
-        Person.happening(street1.people);
+        Person.happening(street1.getPeople());
 
         //Retep продает бизнесс e3
         employer2.sellBusiness(employer3, 800);

@@ -1,3 +1,8 @@
+package project.Person;
+
+import project.*;
+import project.City.*;
+
 public class Business {
     private int sizeOfCompany;
     private String name;
