@@ -5,7 +5,7 @@ import project.Person.Person;
 
 import java.util.ArrayList;
 
-public class Street extends CityObject {
+public class Street extends CityStructure {
 
     private int beauty;
     private String name;

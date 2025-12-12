@@ -1,6 +1,6 @@
 package project.City;
 
-public class Building extends CityObject {
+public class Building extends CityStructure {
 
     protected boolean isBeautiful;
     protected int costOfRent;

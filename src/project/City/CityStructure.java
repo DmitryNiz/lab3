@@ -4,7 +4,7 @@ import project.Person.Person;
 
 import java.util.ArrayList;
 
-public abstract class CityObject {
+public abstract class CityStructure {
 
     protected ArrayList<Person> people = new ArrayList<>();
 
